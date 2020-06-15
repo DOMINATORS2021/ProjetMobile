@@ -94,7 +94,7 @@ public class WalkthruForm extends Form {
         walkthruTabs.addTab("", tab2);
         
         add(walkthruTabs);
-        
+          
         ButtonGroup bg = new ButtonGroup();
         Image unselectedWalkthru = res.getImage("unselected-walkthru.png");
         Image selectedWalkthru = res.getImage("selected-walkthru.png");
