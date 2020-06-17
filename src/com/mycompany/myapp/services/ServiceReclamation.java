@@ -88,8 +88,23 @@ public class ServiceReclamation {
         return reclamations;
     }
        
+        public ArrayList<Reclamation> getReclamation(String sujet ) {
+        String url = Statics.BASE_URL + "/reclamation/RechercherReclamationMobile?sujet="+sujet;
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                reclamations = parseReclamations(new String(req.getResponseData()));
+                req.removeResponseListener(this);                          
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return reclamations;
+    }
+       
     public boolean AjouterReclamation(Reclamation r) {
-        String url = Statics.BASE_URL + "/reclamation/AjouterReclamationMobile?sujet=" + r.getSujet() + "&texte=" + r.getTexte();
+        String url = "http://localhost/MonProjet1/web/app_dev.php/reclamation/AjouterReclamationMobile?sujet=" +r.getSujet()+"&texte="+r.getTexte();
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -116,6 +131,11 @@ public class ServiceReclamation {
         });
 
         NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+    
+    public boolean ModifierReclamation(Reclamation r) {
+        
         return resultOK;
     }
 }

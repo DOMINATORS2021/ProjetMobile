@@ -12,6 +12,8 @@ import com.codename1.ui.FontImage;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
@@ -28,7 +30,6 @@ public class AfficherReclamation extends SideMenuBaseForm
 {
     
     public AfficherReclamation(SideMenuBaseForm previous,Resources res){
-        
         setTitle("Reclamations List");
         setLayout(BoxLayout.y()); 
         
@@ -37,7 +38,20 @@ public class AfficherReclamation extends SideMenuBaseForm
             this.add(setReclamation(r));
         }
    
-        
+          getToolbar().addCommandToOverflowMenu("Add Reclamation", null, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                new AjoutReclamation(res).show();               }
+           
+             }); 
+          
+          
+           getToolbar().addCommandToOverflowMenu("Search Reclamation", null, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                new RechercheReclamation(res).show();               
+            }
+             }); 
         
        getToolbar().addMaterialCommandToLeftBar("Back",FontImage.MATERIAL_ARROW_BACK,e->previous.showBack());
 
@@ -45,12 +59,16 @@ public class AfficherReclamation extends SideMenuBaseForm
      private Container setReclamation(Reclamation r)
     {
         Container cnt=new Container(BoxLayout.y());
+        Style LabelSujet1 = UIManager.getInstance().getComponentStyle("Label");
+        LabelSujet1.setFgColor(ColorUtil.rgb(0, 58, 94));
+        Label lbsujet1 = new Label("Reclamation Subject",FontImage.createMaterial(FontImage.MATERIAL_LOOKS_ONE,LabelSujet1));
         Style LabelSujet = UIManager.getInstance().getComponentStyle("Label");
-        LabelSujet.setFgColor(ColorUtil.rgb(255,0,0));
-        Label lbsujet = new Label(r.getSujet(),FontImage.createMaterial(FontImage.MATERIAL_TOYS,LabelSujet));
+        LabelSujet.setFgColor(ColorUtil.rgb(0, 58, 94));
+        Label lbsujet = new Label(r.getSujet(),FontImage.createMaterial(FontImage.MATERIAL_HDR_STRONG,LabelSujet));
+        Style LabelEtat1 = UIManager.getInstance().getComponentStyle("Label");
+        LabelEtat1.setFgColor(ColorUtil.rgb(0, 58, 94));
+        Label lbetat1 = new Label("Reclamation State",FontImage.createMaterial(FontImage.MATERIAL_LOOKS_TWO,LabelEtat1));
 
-        Label lbtexte=new Label(r.getTexte());
-        Label lbdate=new Label(""+r.getDateReclamation());
         String Str="";
         if (r.getEtatReclamation()==0)
         {
@@ -61,13 +79,16 @@ public class AfficherReclamation extends SideMenuBaseForm
             Str=Str+"Problem Solved";
 
         }
-        Label lbetat=new Label(Str);
+        Style LabelEtat = UIManager.getInstance().getComponentStyle("Label");
+        LabelEtat.setFgColor(ColorUtil.rgb(0, 58, 94));
+        Label lbetat = new Label(Str,FontImage.createMaterial(FontImage.MATERIAL_LABEL,LabelEtat));
+    
  
         
         Button btn=new Button();
         
      
-        cnt.addAll(lbsujet,lbtexte,lbdate,lbetat,btn);
+        cnt.addAll(lbsujet1,lbsujet,lbetat1,lbetat,btn);
         btn.addActionListener((e)->{
             new AfficherReclamationDetails(this,r).show(); 
         });
