@@ -28,11 +28,11 @@ import com.mycompany.myapp.services.ServiceReclamation;
  */
 public class AfficherReclamation extends SideMenuBaseForm
 {
-    
+    Resources ress;
     public AfficherReclamation(SideMenuBaseForm previous,Resources res){
         setTitle("Reclamations List");
         setLayout(BoxLayout.y()); 
-        
+        ress=res;
          for(Reclamation r:ServiceReclamation.getInstance().getAllReclamations())
         {
             this.add(setReclamation(r));
@@ -90,7 +90,7 @@ public class AfficherReclamation extends SideMenuBaseForm
      
         cnt.addAll(lbsujet1,lbsujet,lbetat1,lbetat,btn);
         btn.addActionListener((e)->{
-            new AfficherReclamationDetails(this,r).show(); 
+            new AfficherReclamationDetails(this,r,ress).show(); 
         });
                
         cnt.setLeadComponent(btn);

@@ -136,6 +136,39 @@ public class ServiceReclamation {
     
     public boolean ModifierReclamation(Reclamation r) {
         
+        String Url = "http://localhost/MonProjet1/web/app_dev.php/reclamation/ModifierReclamationMobile?id="
+                + r.getId()
+                + "&sujet=" + r.getSujet()
+                + "&texte=" + r.getTexte();
+        req.setUrl(Url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
         return resultOK;
     }
+    
+    public boolean SendMailToAdmin ()
+    {
+        String url = "http://localhost/MonProjet1/web/app_dev.php/reclamation/SendMailToAdmin";
+        req.setUrl(url);
+        req.addResponseCodeListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+                
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+  
+    
+    
 }

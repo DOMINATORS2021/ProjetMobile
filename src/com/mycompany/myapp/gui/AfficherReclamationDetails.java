@@ -24,16 +24,15 @@ import com.mycompany.myapp.entities.Reclamation;
  */
 public class AfficherReclamationDetails extends SideMenuBaseForm{
 
-    
-    public AfficherReclamationDetails(SideMenuBaseForm previous,Reclamation r)
+    public AfficherReclamationDetails(SideMenuBaseForm previous,Reclamation r,Resources res)
     {
      setTitle(r.getSujet());
      setLayout(BoxLayout.y()); 
-     
+     setupSideMenu(res);
+
      Style btnSupp = UIManager.getInstance().getComponentStyle("Button");
      btnSupp.setFgColor(ColorUtil.rgb(0, 58, 94));
      Button btnSupprimer= new Button("Delete",FontImage.createMaterial(FontImage.MATERIAL_REMOVE_CIRCLE_OUTLINE,btnSupp)); 
-     
      Style btnModif = UIManager.getInstance().getComponentStyle("Button");
      btnModif.setFgColor(ColorUtil.rgb(0, 58, 94));
      Button btnModifier= new Button("Edit",FontImage.createMaterial(FontImage.MATERIAL_EDIT,btnModif)); 
@@ -74,9 +73,9 @@ public class AfficherReclamationDetails extends SideMenuBaseForm{
          Dialog.show("Success","Reclamation deleted",new Command("ok"));
          com.mycompany.myapp.services.ServiceReclamation.getInstance().SupprimerReclamation(r) ;
          });
+       
         btnModifier.addActionListener((e)->{
-         Dialog.show("Success","Reclamation modified",new Command("ok"));
-         com.mycompany.myapp.services.ServiceReclamation.getInstance().SupprimerReclamation(r) ;
+         new ModifierReclamation(previous, res, r).show();
          });
         
      getToolbar().addMaterialCommandToLeftBar("Back",FontImage.MATERIAL_ARROW_BACK,e->previous.showBack());

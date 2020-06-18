@@ -51,7 +51,9 @@ public class AjoutReclamation extends SideMenuBaseForm{
                r.setTexte(Texte.getText());
             try {
                if( new com.mycompany.myapp.services.ServiceReclamation().AjouterReclamation(r))
-                   Dialog.show("Success","Connection accepted",new Command("ok"));
+               { com.mycompany.myapp.services.ServiceReclamation.getInstance().SendMailToAdmin();
+                   Dialog.show("Success","Reclamation has been sent",new Command("ok"));
+               }
                  else
                    Dialog.show("ERROR","Server error",new Command("ok"));
               }
