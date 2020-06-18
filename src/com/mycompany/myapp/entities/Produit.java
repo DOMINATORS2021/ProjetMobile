@@ -5,6 +5,7 @@
  */
 package com.mycompany.myapp.entities;
 
+import com.codename1.ui.URLImage;
 import java.util.Date;
 
 
@@ -27,6 +28,7 @@ public class Produit {
     private double prix_Mg;
     private int id_categorie;
     private String nom_marque;
+    private URLImage img;
     public Produit(){};
    
 
@@ -70,7 +72,21 @@ public class Produit {
         this.type = type;
     }
    
-    
+        public Produit(String nom, int quantite, double prix, String type,URLImage img) {
+        this.nom = nom;
+        this.quantite = quantite;
+        this.prix = prix;
+        this.type = type;
+        this.img = img;
+    }
+
+    public URLImage getImg() {
+        return img;
+    }
+
+    public void setImg(URLImage img) {
+        this.img = img;
+    }
  
     public int getId() {
         return id;

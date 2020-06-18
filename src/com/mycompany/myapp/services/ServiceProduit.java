@@ -63,6 +63,7 @@ public class ServiceProduit {
             p.setType(obj.get("type").toString());
             p.setNvquantite((int)Float.parseFloat(obj.get("nvquantite").toString()));
             p.setNvprix((double)Float.parseFloat(obj.get("nvprix").toString()));
+            p.setNomfile(obj.get("nomfile").toString());
             
             
             
@@ -168,9 +169,9 @@ public class ServiceProduit {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return produits;
     }
-      public void affecterProduit(Produit p,Resources res) {
+      public void ModifierProduit(Produit p,Resources res) {
              ConnectionRequest con = new ConnectionRequest();
-        String Url = Statics.BASE_URL + "/admin/dModifierStock/"+
+        String Url = Statics.BASE_URL + "/ModiferStockMobile/"+
  p.getId()+"?prix_Mg=" + p.getPrix_Mg()
                 + "&nvquantite=" + p.getNvquantite();
               
@@ -187,6 +188,6 @@ public class ServiceProduit {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         }
-     
+
       
 }

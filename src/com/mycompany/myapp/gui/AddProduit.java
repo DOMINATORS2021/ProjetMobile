@@ -18,6 +18,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.entities.Produit;
 import com.mycompany.myapp.services.ServiceProduit;
+import com.codename1.ui.spinner.Picker;
 
 
 
@@ -36,6 +37,7 @@ public class AddProduit extends Form{
         ComboBox type = new ComboBox("Hunting","Fishing");
         TextField tfprix = new TextField("","Prix");
         TextField tfquantite = new TextField("","Quantite");
+        
         
       
         Button btnValider = new Button("Add Produit");
@@ -64,9 +66,7 @@ public class AddProduit extends Form{
         });
        
         
-        
     
-        
         addAll(tfName,type,tfprix,tfquantite,btnValider);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack());
                 

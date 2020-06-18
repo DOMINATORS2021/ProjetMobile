@@ -30,12 +30,15 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.entities.Produit;
+import com.mycompany.myapp.gui.AddCoursForm;
 import com.mycompany.myapp.gui.AddProduit;
 import com.mycompany.myapp.gui.AfficherReclamation;
 import com.mycompany.myapp.gui.AjoutReclamation;
 import com.mycompany.myapp.gui.BudgetPieChart;
 import com.mycompany.myapp.gui.ChartDemosForm;
+import com.mycompany.myapp.gui.ListRaitingForm;
 import com.mycompany.myapp.gui.ListeDesProduitsMg;
+import com.mycompany.myapp.gui.ListeEvenements;
 import com.mycompany.myapp.gui.ListeProduits;
 import com.mycompany.myapp.gui.ListeProduitsEnPromotion;
 
@@ -77,14 +80,19 @@ public abstract class SideMenuBaseForm extends Form {
         //getToolbar().addMaterialCommandToSideMenu("Ajout Des Categorie", FontImage.MATERIAL_DASHBOARD,  e -> new AddCategorie(this).show());
        
         getToolbar().addMaterialCommandToSideMenu("Ajout Des Produits", FontImage.MATERIAL_DASHBOARD,  e -> new AddProduit(this).show());
-       
         getToolbar().addMaterialCommandToSideMenu("All Products", FontImage.MATERIAL_LIST,  e -> new ListeProduits(res).show());
-        getToolbar().addMaterialCommandToSideMenu("Reclamations", FontImage.MATERIAL_LIST,  e -> new AfficherReclamation(this,res).show());       
+        getToolbar().addMaterialCommandToSideMenu("Amount by product", FontImage.MATERIAL_PIE_CHART,  e -> new ChartDemosForm().show());      
         getToolbar().addMaterialCommandToSideMenu("Promotions ", FontImage.MATERIAL_LIST,  e -> new ListeProduitsEnPromotion(res).show());
-        getToolbar().addMaterialCommandToSideMenu("Amount by product", FontImage.MATERIAL_PIE_CHART,  e -> new ChartDemosForm().show());
+   
+        
+        getToolbar().addMaterialCommandToSideMenu("All Courses", FontImage.MATERIAL_LIST,  e -> new ListRaitingForm(res).show());
+        getToolbar().addMaterialCommandToSideMenu("Add Courses", FontImage.MATERIAL_LIST,  e -> new AddCoursForm(this).show());
+        getToolbar().addMaterialCommandToSideMenu("Reclamations", FontImage.MATERIAL_LIST,  e -> new AfficherReclamation(this,res).show());       
+        getToolbar().addMaterialCommandToSideMenu("List Events", FontImage.MATERIAL_LIST,  e -> new ListeEvenements(res).show());
 
+        
         getToolbar().addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_ACCOUNT_CIRCLE,  e -> new ProfileForm(res).show());
-        getToolbar().addMaterialCommandToSideMenu("  Logout", FontImage.MATERIAL_EXIT_TO_APP,  e -> new LoginForm(res).show());
+        getToolbar().addMaterialCommandToSideMenu("  Logout", FontImage.MATERIAL_EXIT_TO_APP,  e -> new LoginForm1(res).show());
 
 
         

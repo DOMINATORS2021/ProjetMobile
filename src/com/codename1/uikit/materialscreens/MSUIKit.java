@@ -59,7 +59,7 @@ public class MSUIKit {
             current.show();
             return;
         }
-        new LoginForm(theme).show();
+        new LoginForm1(theme).show();
        
     }
 

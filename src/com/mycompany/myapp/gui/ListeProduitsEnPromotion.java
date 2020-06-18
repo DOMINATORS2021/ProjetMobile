@@ -88,7 +88,7 @@ public class ListeProduitsEnPromotion extends SideMenuBaseForm  {
                 SpanLabel sp15=new SpanLabel("Nouveau Prix: "+" "+p.getNvprix());
                 System.out.println(p.getNvprix());
                  System.out.println(p);
-                 Button mg= new Button("Affecter Magasin");
+                Button mg= new Button("Affecter Magasin");
                  mg.getAllStyles().setTextDecoration(Style.TEXT_DECORATION_UNDERLINE);
                  mg.addActionListener((evt)->{
                 Form f = new Form(BoxLayout.y());
@@ -112,7 +112,7 @@ public class ListeProduitsEnPromotion extends SideMenuBaseForm  {
                     p.setPrix_Mg(Double.parseDouble(prixmg.getText()));
                     p.setNvquantite(Integer.parseInt(quantitemg.getText()));
                      
-                    ser.affecterProduit(p, res);
+                    ser.ModifierProduit(p, res);
                      }});
                  });
                 Container c2 = new Container(BoxLayout.x());
@@ -121,7 +121,7 @@ public class ListeProduitsEnPromotion extends SideMenuBaseForm  {
                 c2.addAll(sh,li);
                 Container c3 = new Container(BoxLayout.y());
                 f2.setScrollableY(true);
-                c3.addAll(sp,spl,spl2,spl3,spl4,sp15,mg);
+                c3.addAll(sp,spl,spl2,spl3,spl4,sp15);
              
                 f2.addAll(c3,c2);
 
